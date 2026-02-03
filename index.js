@@ -96,6 +96,7 @@ app.post("/auth/login", loginLimiter, async (req, res) => {
     res.cookie("token", token, {
       httpOnly: true,
       sameSite: "none",
+      secure: true,
       maxAge: 36000,
     });
     return res.status(200).json({
