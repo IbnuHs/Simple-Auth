@@ -20,6 +20,7 @@ app.use(
       "https://simple-login-protected-route.vercel.app",
     ],
     credentials: true,
+    allowedHeaders: ["Content-Type", "Authorization"],
     methods: ["GET", "POST", "PUT", "DELETE"],
   }),
 );
@@ -97,7 +98,7 @@ app.post("/auth/login", loginLimiter, async (req, res) => {
       httpOnly: true,
       sameSite: "none",
       secure: true,
-      maxAge: 36000,
+      maxAge: 24 * 60 * 60 * 1000,
     });
     return res.status(200).json({
       code: 200,
