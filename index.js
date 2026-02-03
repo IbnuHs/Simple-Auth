@@ -12,7 +12,14 @@ const cors = require("cors");
 const seedUser = require("./utils/seedUser.js");
 
 const app = express();
-app.use(cors({ origin: "*" }));
+app.use(
+  cors({
+    origin: "https://simple-login-protected-route.vercel.app",
+    credentials: true,
+    allowedHeaders: ["Content-Type", "Authorization"],
+    methods: ["GET", "POST", "PUT", "DELETE"],
+  }),
+);
 app.use(express.json());
 app.use(cookieParser());
 const port = 3100;
