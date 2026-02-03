@@ -1,8 +1,9 @@
+const dotenv = require("dotenv");
+dotenv.config();
 const express = require("express");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 const { createUser, getUserByUsername } = require("./query/user.query.js");
-const dotenv = require("dotenv");
 const loginLimiter = require("./middleware/limiter.middleware.js");
 const cookieParser = require("cookie-parser");
 const isValidEmail = require("./utils/checkEmailValid.js");
@@ -11,7 +12,6 @@ const cors = require("cors");
 const seedUser = require("./utils/seedUser.js");
 
 const app = express();
-dotenv.config();
 app.use(express.json());
 app.use(
   cors({
