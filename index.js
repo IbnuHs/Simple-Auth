@@ -15,7 +15,10 @@ const app = express();
 app.use(express.json());
 app.use(
   cors({
-    origin: "http://localhost:5173",
+    origin: [
+      "http://localhost:5173",
+      "https://simple-login-protected-route.vercel.app",
+    ],
     credentials: true,
   }),
 );
@@ -91,7 +94,7 @@ app.post("/auth/login", loginLimiter, async (req, res) => {
     );
     res.cookie("token", token, {
       httpOnly: true,
-      sameSite: "lax",
+      sameSite: "none",
       maxAge: 36000,
     });
     return res.status(200).json({
@@ -120,7 +123,7 @@ app.get("/auth/me", authMiddleware, async (req, res) => {
 app.post("/auth/logout", (req, res) => {
   res.clearCookie("token", {
     httpOnly: true,
-    sameSite: "lax",
+    sameSite: "none",
   });
   res.status(200).json({
     message: "Berhasil Logout",
