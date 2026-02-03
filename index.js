@@ -20,9 +20,9 @@ app.use(
       "https://simple-login-protected-route.vercel.app",
     ],
     credentials: true,
+    methods: ["*"],
   }),
 );
-app.options("*", cors());
 app.use(cookieParser());
 const port = 3100;
 
