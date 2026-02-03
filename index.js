@@ -22,6 +22,7 @@ app.use(
     credentials: true,
   }),
 );
+app.options("*", cors());
 app.use(cookieParser());
 const port = 3100;
 
