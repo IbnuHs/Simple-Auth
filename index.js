@@ -95,6 +95,7 @@ app.post("/auth/login", loginLimiter, async (req, res) => {
       httpOnly: true,
       sameSite: "none",
       secure: true,
+      domain: process.env.FRONTEND_URL,
       maxAge: 24 * 60 * 60 * 1000,
     });
     return res.status(200).json({
