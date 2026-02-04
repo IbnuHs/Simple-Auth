@@ -14,7 +14,7 @@ const seedUser = require("./utils/seedUser.js");
 const app = express();
 app.use(
   cors({
-    origin: "https://simple-auth-react-rose.vercel.app/login",
+    origin: "https://simple-auth-react-rose.vercel.app",
     credentials: true,
     allowedHeaders: ["Content-Type", "Authorization"],
     methods: ["GET", "POST", "PUT", "DELETE"],
