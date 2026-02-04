@@ -14,7 +14,10 @@ const seedUser = require("./utils/seedUser.js");
 const app = express();
 app.use(
   cors({
-    origin: "https://simple-auth-react-rose.vercel.app",
+    origin: [
+      "https://simple-auth-react-rose.vercel.app",
+      "http://localhost:5173",
+    ],
     credentials: true,
     allowedHeaders: ["Content-Type", "Authorization"],
     methods: ["GET", "POST", "PUT", "DELETE"],
@@ -112,7 +115,6 @@ app.post("/auth/login", loginLimiter, async (req, res) => {
 app.get("/auth/me", authMiddleware, async (req, res) => {
   try {
     return res.json({ user: req.user });
-    // const
   } catch (error) {
     return res.status(500).json({
       code: 500,
@@ -125,6 +127,8 @@ app.post("/auth/logout", (req, res) => {
   res.clearCookie("token", {
     httpOnly: true,
     sameSite: "none",
+    secure: true,
+    path: "/",
   });
   res.status(200).json({
     message: "Berhasil Logout",
