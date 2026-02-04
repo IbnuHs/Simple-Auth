@@ -42,7 +42,7 @@ Cookie ini digunakan untuk autentikasi pada setiap request berikutnya tanpa perl
 
 Endpoint login dibatasi maksimal **5 request dalam 1 menit** menggunakan library **express-rate-limit**.
 
-Jika jumlah request melebihi batas yang ditentukan, server akan langsung mengembalikan error untuk mencegah brute force attack.
+Jika jumlah request melebihi batas yang ditentukan, server akan langsung mengembalikan error.
 
 ---
 
