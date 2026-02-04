@@ -27,6 +27,29 @@
 
 ---
 
+## 🔍 Explain
+
+1. **Login**
+
+Saat user melakukan login, backend akan memverifikasi email dan password.  
+Password divalidasi menggunakan **bcrypt**, kemudian jika berhasil, backend akan membuat **JWT token** dan secara otomatis menyimpannya ke dalam **HttpOnly Cookie** di sisi client.
+
+Cookie ini digunakan untuk autentikasi pada setiap request berikutnya tanpa perlu menyimpan token di localStorage.
+
+---
+
+2. **Limit Hit Endpoint**
+
+Endpoint login dibatasi maksimal **5 request dalam 1 menit** menggunakan library **express-rate-limit**.
+
+Jika jumlah request melebihi batas yang ditentukan, server akan langsung mengembalikan error untuk mencegah brute force attack.
+
+---
+
+3. **Logout**
+
+Saat client melakukan request logout, backend akan menghapus JWT yang tersimpan di cookie dengan cara meng-clear cookie tersebut, sehingga session user langsung berakhir.
+
 ## 🛠️ Cara Menjalankan Project
 
 ### 1. Clone Repository dan Masuk ke Folder Project
